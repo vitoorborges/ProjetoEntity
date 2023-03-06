@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IList<Funcionario>
+
+<form action="EnviarDados" method="post">
+
+    <input type="text" placeholder="Insira o nome" id="Nome" name="Nome" />
+    <input type="number" placeholder="Insira a idade" id="Idade" name="Idade" />
+    <input type="submit" style="margin-bottom: 20px" value="Enviar dados" />
+
+</form>
+
+<form action="RecuperarDados" method="post">
+    <input type="submit" value="Carregar dados" />
+    
+</form>
+
+<p>
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <form action="Deletar" method="Post">
+            @item;
+            <input type="hidden" value="@item.Id" name="IdFuncionario" />
+            <input type="submit" value="Deletar" />
+            <br />
+
+            </form>
+        }
+    }
+</p>
